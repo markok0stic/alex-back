@@ -26,6 +26,7 @@
 			elem.msRequestFullscreen();
 		}   
 		
+		
 	 	async function waitingKeypress() 
 	   {
 		return new Promise((resolve) => 
