@@ -1,0 +1,152 @@
+<html>
+<head>
+
+  <meta charset="utf-8" />
+  <title>UMONRM - Istraživanje</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+      body {
+        font-family: "Times New Roman", Times, serif;
+      }
+
+
+      h1 {
+        text-align:center;
+      }
+
+      h3 {
+        text-align:center;
+        margin-right: 20%;
+        margin-left: 20%;
+
+      }
+
+      p {
+          text-align:center;
+      }
+      /* Style the button */
+      button {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        height: 30px;
+        width: 200px;
+        left: 85%;
+        top: 90%;
+        margin-top: -15px;   /* = -height / 2   */
+        margin-left: -100px; /* = -width / 2    */
+        position: fixed;     /* Fixed is better */
+
+      }
+
+      input[type=text] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid red;
+        border-radius: 4px;
+      }
+
+      container {
+        position: absolute;
+        width: 50%;
+      }
+
+
+
+</style>
+
+<script type="text/javascript" src="imtScripts.js"></script>
+
+</head>
+
+<body>
+
+
+
+<script>
+
+  var sessionStart;
+  var sessionKey;
+  var sourceString
+  var thisParam1;
+  var thisParam2;
+  var thisParam3;
+  var uniqueID;
+
+  if (thisParam1 = getUrlParameter('ID')) {
+    sessionStart = thisParam1;
+  } else {
+    sessionStart = pad(Date.now(),16);
+  }
+
+  if (thisParam2 = getUrlParameter('SESSION')) {
+    sessionKey = thisParam2;
+  } else {
+    sessionKey = Math.floor(Math.random() * 1000);
+    sessionKey = pad(sessionKey,4);
+  }
+
+  if (thisParam3 = getUrlParameter('SOURCE')) {
+     sourceString= "&SOURCE=PROLIFIC";
+  } else {
+    sourceString = "&SOURCE=UNKNOWN";
+  }
+
+  uniqueID = sessionStart + "_" + sessionKey;
+
+  function getConsent() {
+
+
+    var pageString = "obtainConsent.html?ID=";
+    var secondString = "&SESSION=";
+    var finalURL = pageString+sessionStart.toString()+secondString+sessionKey.toString()+sourceString;
+
+    window.location.href = finalURL;
+ }
+</script>
+
+  <button id="exp_button" onclick="getConsent()">Continue</button>
+
+&nbsp;
+&nbsp;
+
+<h1>Dobrodošli na istraživanje Uticaj muzičkog obrazovanja na radnu memoriju.</h1>
+
+&nbsp;
+&nbsp;
+
+<h3>Ovo istraživanje je deo predispitnih obaveza na kursu PERCEPCIJA, Odseka za Psihologiju.</h3>
+
+
+<h3>U crvenom prozoru je generisan vaš lični kod (Session ID) za učešće u ovom istaživanju.</h3>
+
+<div align="center">
+  <form>
+    <label for="idBox">Session ID</label>
+    <input type="text" id="idBox" name="idBox" readonly>
+  </form>
+</div>
+
+<script>
+document.getElementById("idBox").value = uniqueID;
+</script>
+
+<div id="container">
+  <h3>Sva pitanja šaljite na <a href="mailto:aleksandra9764@gmail.com">aleksandra9764@gmail.com</a> </h3>
+</div>
+
+&nbsp;
+&nbsp;
+
+<h3> Uskoro ćete dobiti i detaljne instrukcije o zadatku u ovom eksprimentu. </p>
+<h3> Takođe bićete pitani i za saglasnost da učestvujete u ovom eksperimentu.</h3>
+
+&nbsp;
+&nbsp;
+
+<h3> Za nastavak pritisnite sivo dugme na kome piše: Continue.</h3>
+</body>
+</html>
