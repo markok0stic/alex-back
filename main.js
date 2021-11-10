@@ -25,10 +25,6 @@
 			else if (elem.msRequestFullscreen) 
 			elem.msRequestFullscreen();
 		}   
-
-
-
-		
 		
 	 	async function waitingKeypress() 
 	   {
