@@ -26,6 +26,9 @@
 			elem.msRequestFullscreen();
 		}   
 
+
+
+		
 		
 	 	async function waitingKeypress() 
 	   {
