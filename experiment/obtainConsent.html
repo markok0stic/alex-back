@@ -1,0 +1,105 @@
+<html>
+<head>
+
+  <meta charset="utf-8" />
+  <title>UMONRM - Saglasnost</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+      body {
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      h1 {
+        text-align:center;
+      }
+
+      h3 {
+        text-align:center;
+        margin-right: 10%;
+        margin-left: 10%;
+
+      }
+
+
+      p {
+          text-align:center;
+      }
+      /* Style the button */
+      button {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        height: 30px;
+        width: 200px;
+        left: 85%;
+        top: 95%;
+        margin-top: -15px;   /* = -height / 2   */
+        margin-left: -100px; /* = -width / 2    */
+        position: fixed;     /* Fixed is better */
+
+      }
+
+      .button2 {
+        left: 15%;
+      }
+
+      input[type=text] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid red;
+        border-radius: 4px;
+      }
+
+
+</style>
+
+<script type="text/javascript" src="imtScripts.js"></script>
+
+</head>
+
+<body>
+
+<script>
+  function getConsent() {
+
+
+    var consent = confirm("Pritiskanjem tastera, potvrđujem da se slažem sa onim što je opisano u Saglasnosti.");
+
+    if (consent) {
+
+      window.location.href = "Demographics.html";
+   } 
+  }
+
+
+</script>
+
+
+&nbsp;
+&nbsp;
+
+<h1>Saglasnost za učestvovanje u istraživanju Uticaj muzičkog obrazovanja na radnu memoriju.</h1>
+
+
+
+<h3>Molim vas da pažljivo pročitate SAGLASNOST. Kada završite, pritisnite sivo dugme na kome piše: CONTINUE.</h3>
+
+
+<script>
+document.getElementById("idBox").value = uniqueID;
+</script>
+
+
+<div align="center">
+<embed src="consent/ConsentForm.pdf" type="application/pdf" width="80%" height="60%" />
+</div>
+
+<button id="exp_button" onclick="getConsent()">Continue</button>
+
+
+
+</body>
+</html>
