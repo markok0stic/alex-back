@@ -2,7 +2,7 @@
 <head>
 
   <meta charset="utf-8" />
-  <title>UMONRM - Demografija</title>
+  <title>Demografija</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
@@ -115,24 +115,19 @@
 		<input type="radio" id=" other" name="gender" class="gender" value="Drugo">&nbsp;Drugo
 		</label><br><br>
 		<label for="quantity">Starost/godine (23-33): </label>
-		<input type="number" id="quantity" name="quantity" min="1" max="100"><br><br>
+		<input type="number" id="quantity" name="quantity" min="1" max="100" value="0"><br><br>
 		<label>Da li svirate neki instrument ili se bavite nekom vrstom pevanja?</label>
+    <br>
 		<label>
-		<br>
-		<input type="radio" id="sviraminstrument" name="struka" value="Sviram instrument" >&nbsp;Sviram instrument
-		</label>
-		<label>
-		<input type="radio" id="solop" name="struka" value="Solo pevanje">&nbsp;Solo pevanje
-		</label>
-		<label>
-		<input type="radio" id="kamernop" name="struka" value="Kamerno pevanje" >&nbsp;Kamerno pevanje
+		<input type="radio" id="kamernop" name="struka" value="Da" >&nbsp;Da
 		</label>
 		<label>
 		<input type="radio" id="ne" name="struka" value="Ne">&nbsp;Ne
 		</label>
 		<div id = "instrument1">
-		</div><br><br>
-		<label>Da li ste završili nesto od ponudjenog</label>
+		</div>
+    <br>
+		<label>Da li ste završili nesto od ponudjenog?</label>
 		<label>
 		<br>
 		<input type="radio" id="nms" name="skola" value="Niža muzička škola">&nbsp;Niža muzička škola
@@ -144,15 +139,15 @@
 		<input type="radio" id="fmz" name="skola" value="Fakultet muzičke umetnosti" >&nbsp;Fakultet muzičke umetnosti
 		</label>
 		<label>
-		<input type="radio" id="nista" name="skola" value="Nisam">&nbsp;Nisam
-		</label><br><br>
+		<input type="radio" id="nista" name="skola" value="Ništa od ponuđenog">&nbsp;Ništa od ponuđenog
+		</label>
 	</form>
 </div>
 
-<script type ="module" src="Demographics.js"> 
+<script type ="module" src="scripts\Demographics.js"> 
 </script>
 
-<button id="exp_button">Continue</button>
+<button id="exp_button">Nastavi dalje</button>
 
 </body>
 </html>

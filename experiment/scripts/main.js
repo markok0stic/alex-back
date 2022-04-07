@@ -1,17 +1,17 @@
-import { Slucaj } from "./Slucaj.js";
-import { Korisnik } from "./Korisnik.js";
+import { Slucaj } from "../classes/Slucaj.js";
+
 let mainContainer = document.createElement('div');
 mainContainer.className="mainContainer";
 document.body.appendChild(mainContainer);
 
 let lblNaslov = document.createElement('label');
 lblNaslov.className="lblNaslov";
-lblNaslov.innerHTML="PRITISNI DUGME START DA ZAPOČNES EXPERIMENT"
+lblNaslov.innerHTML="DA ZAPOČNES EXPERIMENT PRITISNI DUGME: Započni experiment"
 mainContainer.appendChild(lblNaslov);
 
 let btnStart = document.createElement('button');
 btnStart.className="btnStart";
-btnStart.innerHTML="Start"
+btnStart.innerHTML="Započni experiment"
 btnStart.onclick = (ev) => startExperiment(mainContainer);
 mainContainer.appendChild(btnStart);
 
@@ -22,10 +22,11 @@ mainContainer.appendChild(smallContainer);
 let lblOdg = document.createElement('label');
 lblOdg.className="lblOdg";
 mainContainer.appendChild(lblOdg);
+//ukoliko se radi u phpu potrebno je da samo ova tri niza nadju nekako taj izlazni fajl opet kazem ne znam php ali mogu da naucim
+let listaOdgovora =[]; // ovde se nalaze odgovori klijenta
+let listaVremenaReakcije=[];//  ovde se nalaze vremena reakcije klijenta
+let listaResenja =[];// ovde je lista resenja testova
 
-let listaOdgovora =[];
-let listaVremenaReakcije=[];
-let listaResenja =[];
 function openFullscreen() 
 {
 	if (document.documentElement.requestFullscreen) 
@@ -37,9 +38,8 @@ function openFullscreen()
 }   
 
 
-async function startExperiment(host)
+async function startExperiment()
 {
-    Korisnik.suba();
     btnStart.style="display:none";
     listaOdgovora =[];
     listaResenja=[];
@@ -93,13 +93,16 @@ function shuffle(array) {
 
 function popuniBazu()
 {
+    console.log(listaOdgovora);
+    console.log(listaResenja);
+    console.log(listaVremenaReakcije);
+    //da bih mogao kroz HTTP reqest da prosledim nizove morao sam da ih konkatenisem u string i onda prolsedjujem sam niz
    let odgovori ="";
 
    for (let i=0;i<listaOdgovora.length;i++)
    {
        odgovori = odgovori.concat(listaOdgovora[i],"a");
    }
-   console.log(odgovori);
 
    let resenja ="";
 
@@ -107,7 +110,6 @@ function popuniBazu()
    {
     resenja = resenja.concat(listaResenja[i],"a");
    }
-   console.log(resenja);
 
    let vremeReakcije ="";
 
@@ -115,7 +117,6 @@ function popuniBazu()
    {
     vremeReakcije = vremeReakcije.concat(listaVremenaReakcije[i],"a");
    }
-   console.log(vremeReakcije);
 
-
+   //to do fetch sa serverom 
 }

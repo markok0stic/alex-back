@@ -54,30 +54,7 @@
 
 <body>
 
-
-
-<script>
-
-/*   var sessionStart;
-  var sessionKey;
-
-  var uniqueID;
-
-  sessionStart = pad(Date.now(),16);
-    sessionKey = Math.floor(Math.random() * 1000);
-    sessionKey = pad(sessionKey,4);
-
-
-  uniqueID = sessionStart + "_" + sessionKey; */
-
-  function gotonewpage() 
-  {
-    var pageString = "obtainConsent.html";
-    window.location.href = pageString;
-  }
-</script>
-
-  <button id="exp_button" onclick="gotonewpage()">Continue</button>
+  <button id="exp_button1" onclick="gotonewpage()">Nastavi dalje</button>
 
 &nbsp;
 &nbsp;
@@ -89,13 +66,13 @@
 
 <h3>Ovo istraživanje je deo predispitnih obaveza na kursu PERCEPCIJA, Odseka za Psihologiju.</h3>
 
-<script>
-document.getElementById("idBox").value = uniqueID;
-</script>
 
 <div id="container">
   <h3>Sva pitanja šaljite na <a href="mailto:aleksandra9764@gmail.com">aleksandra9764@gmail.com</a> </h3>
 </div>
+&nbsp;
+&nbsp;
+<center><input type="text" id="idBox"/></center>
 
 &nbsp;
 &nbsp;
@@ -106,6 +83,30 @@ document.getElementById("idBox").value = uniqueID;
 &nbsp;
 &nbsp;
 
-<h3> Za nastavak pritisnite sivo dugme na kome piše: Continue.</h3>
+<h3> Za nastavak pritisnite sivo dugme na kome piše: Nastavi dalje.</h3>
+
+<script>
+  function pad (myNum, size) {
+  var s = String(myNum);
+  while (s.length < (size || 2)) {s = "0" + s;}
+  return s;
+  }
+  var uniqueID=null;
+
+
+var sessionStart;
+var sessionKey;
+
+
+
+sessionStart = pad(Date.now(),16);
+sessionKey = Math.floor(Math.random() * 1000);
+sessionKey = pad(sessionKey,4);
+
+
+uniqueID = sessionStart + "_" + sessionKey;
+document.getElementById("idBox").value = uniqueID;
+  document.getElementById("exp_button1").onclick=ev=>{  window.location.href = "obtainConsent.html"; }
+</script>
 </body>
 </html>

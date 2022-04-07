@@ -2,7 +2,7 @@
 <head>
 
   <meta charset="utf-8" />
-  <title>UMONRM - Saglasnost</title>
+  <title>Saglasnost</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
@@ -80,22 +80,19 @@
 
 <h1>Saglasnost za učestvovanje u istraživanju Uticaj muzičkog obrazovanja na radnu memoriju.</h1>
 
+<center><input type="text" id="idBox"/></center>
 
+<h3>Molim vas da pažljivo pročitate SAGLASNOST. Kada završite, pritisnite sivo dugme na kome piše: Nastavi dalje.</h3>
 
-<h3>Molim vas da pažljivo pročitate SAGLASNOST. Kada završite, pritisnite sivo dugme na kome piše: CONTINUE.</h3>
-
-
-<script>
-document.getElementById("idBox").value = uniqueID;
-</script>
 
 
 <div align="center">
 <embed src="consent/ConsentForm.pdf" type="application/pdf" width="80%" height="60%" />
 </div>
 
-<button id="exp_button" onclick="getConsent()">Continue</button>
-
+<button id="exp_button" onclick="getConsent()">Nastavi dalje</button>
+<script type="module" src="scripts/index.js">
+</script>
 
 
 </body>
