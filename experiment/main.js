@@ -39,7 +39,7 @@ function openFullscreen()
 
 async function startExperiment(host)
 {
-    alert(Korisnik.id);
+    Korisnik.suba();
     btnStart.style="display:none";
     listaOdgovora =[];
     listaResenja=[];

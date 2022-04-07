@@ -34,6 +34,7 @@ function submitDemographics()
           {
             s.json().then((data)=>{
               let k = new Korisnik(data);
+              Korisnik.suba(k);
               window.location.href = "exp.html";
             }
             )
