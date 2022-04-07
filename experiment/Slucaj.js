@@ -7,11 +7,10 @@ export class Slucaj{
         this.listaIntervala = [100,150,200,250,300];
         this.listaRandomIntervala = [];
         this.timeout=0;
-        this.Odgovor="";
-        this.vremeReakcije=0;
-        this.resenje="";
         this.klasa="";
-        this.endTime=0;
+        this.resenje="";
+        Slucaj.Odgovor="";
+        Slucaj.vremeReakcije=0;
     }
 
     getRandomInt(min, max) 
@@ -64,7 +63,7 @@ export class Slucaj{
         lblodg.innerHTML="STISNI <b>A</b> UKOLIKO RAZLIKA POSTOJI ILI <b>L</b> UKOLIKO RAZLIKA NE POSTOJI";
         if (istislucaj)
         {
-            this.resenje="RAZLIKA NE POSTOJI";
+            this.resenje="RAZLIKA-NE-POSTOJI";
             this.timeout=1000;
             setTimeout(()=>this.waitingKeypress(),this.timeout+this.listaRandomIntervala[0]);
             this.listaRandomIntervala.forEach(el=>
@@ -80,7 +79,7 @@ export class Slucaj{
         {
             let dom=document.querySelector(".smallContainer");
             dom.innerHTML="";
-            this.resenje="POSTOJI RAZLIKA";
+            this.resenje="POSTOJI-RAZLIKA";
             this.timeout=1000;
             let randomNumofPairTestCircles = this.getRandomInt(4, 1);// num of diff timeout circles
             let t=1;
@@ -129,17 +128,17 @@ export class Slucaj{
         document.removeEventListener('keyup', Slucaj.onkeyPressed);
         if (e.key == 'a' || e.key == 'A') 
                         {    
-                            this.Odgovor="POSTOJI RAZLIKA";
-                            this.endTime = performance.now();
-                            this.vremeReakcije=Math.floor( this.endTime - Slucaj.startTime);
+                            Slucaj.Odgovor="POSTOJI-RAZLIKA";
+                            Slucaj.endTime = performance.now();
+                            Slucaj.vremeReakcije=Math.floor( Slucaj.endTime - Slucaj.startTime);
                         }
         if (e.key == 'l' || e.key == 'L') 
                         {  
-                            this.Odgovor="RAZLIKA NE POSTOJI";
-                            this.endTime = performance.now();
-                            this.vremeReakcije=Math.floor( this.endTime - Slucaj.startTime);
+                            Slucaj.Odgovor="RAZLIKA-NE-POSTOJI";
+                            Slucaj.endTime = performance.now();
+                            Slucaj.vremeReakcije=Math.floor( Slucaj.endTime - Slucaj.startTime);
                         }
         let lblodg = document.querySelector(".lblOdg");
-        lblodg.innerHTML="OVO JE TRAJALO: <b>"+this.vremeReakcije  + "ms</b>";  
+        lblodg.innerHTML="OVO JE TRAJALO: <b>"+Slucaj.vremeReakcije  + "ms</b>";  
     }		 
 }

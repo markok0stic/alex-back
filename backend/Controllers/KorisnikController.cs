@@ -44,7 +44,7 @@ namespace backend.Controllers
            try{
                Context.Korisnici.Add(k);
                 await Context.SaveChangesAsync();
-                return Ok("Uspesno dodat korisnik!");
+                return Ok(k.ID);
            }
            catch(Exception e)
            {
@@ -54,7 +54,7 @@ namespace backend.Controllers
 
         [HttpPut]
         [Route("DodajRezultat/{id}/{resenje}/{odg}/{vremereakcije}")]
-        public async Task<ActionResult> DodajRezultat(int id,string resenje,string odg,int vremereakcije)
+        public async Task<ActionResult> DodajRezultat(int id,string resenje,string odg,string vremereakcije)
         {
            try{
                 var k = await Context.Korisnici.Include(k=>k.RezultatiTesta).Where(k=>k.ID ==id).FirstOrDefaultAsync();
@@ -62,11 +62,7 @@ namespace backend.Controllers
                 {
                     return BadRequest("Ne postoji takav korisnik");
                 }
-                RezultatiTesta rez = new RezultatiTesta();
-                rez.Odgovor=odg;
-                rez.Resenje=resenje;
-                rez.VremeReakcije=vremereakcije;
-                k.RezultatiTesta.Add(rez);
+                
                 Context.Korisnici.Update(k);
                 await Context.SaveChangesAsync();
                 return Ok(k.RezultatiTesta);

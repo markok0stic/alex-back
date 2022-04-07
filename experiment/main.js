@@ -1,4 +1,5 @@
 import { Slucaj } from "./Slucaj.js";
+import { Korisnik } from "./Korisnik.js";
 let mainContainer = document.createElement('div');
 mainContainer.className="mainContainer";
 document.body.appendChild(mainContainer);
@@ -38,6 +39,7 @@ function openFullscreen()
 
 async function startExperiment(host)
 {
+    alert(Korisnik.id);
     btnStart.style="display:none";
     listaOdgovora =[];
     listaResenja=[];
@@ -70,9 +72,9 @@ function crtaj(broj,pom)
         await s.crtajStandard();
         await s.crtajTest(pom).then(()=>
         {
-            listaOdgovora.push(s.Odgovor);
+            listaOdgovora.push(Slucaj.Odgovor);
             listaResenja.push(s.resenje);
-            listaVremenaReakcije.push(s.vremeReakcije);
+            listaVremenaReakcije.push(Slucaj.vremeReakcije);
         });
         resolve();
     });
@@ -91,6 +93,29 @@ function shuffle(array) {
 
 function popuniBazu()
 {
-    //to do
+   let odgovori ="";
+
+   for (let i=0;i<listaOdgovora.length;i++)
+   {
+       odgovori = odgovori.concat(listaOdgovora[i],"a");
+   }
+   console.log(odgovori);
+
+   let resenja ="";
+
+   for (let i=0;i<listaResenja.length;i++)
+   {
+    resenja = resenja.concat(listaResenja[i],"a");
+   }
+   console.log(resenja);
+
+   let vremeReakcije ="";
+
+   for (let i=0;i<listaVremenaReakcije.length;i++)
+   {
+    vremeReakcije = vremeReakcije.concat(listaVremenaReakcije[i],"a");
+   }
+   console.log(vremeReakcije);
+
 
 }
