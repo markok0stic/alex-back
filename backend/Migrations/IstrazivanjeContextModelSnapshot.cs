@@ -17,7 +17,7 @@ namespace backend.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("Models.Korisnik", b =>
                 {
@@ -25,6 +25,9 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("IDgenerated")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InstrumentILIPevanje")
                         .HasColumnType("nvarchar(max)");

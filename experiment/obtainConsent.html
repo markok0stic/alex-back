@@ -59,28 +59,13 @@
 
 <body>
 
-<script>
-  function getConsent() {
-
-
-    var consent = confirm("Pritiskanjem tastera, potvrđujem da se slažem sa onim što je opisano u Saglasnosti.");
-
-    if (consent) {
-
-      window.location.href = "Demographics.html";
-   } 
-  }
-
-
-</script>
-
 
 &nbsp;
 &nbsp;
 
 <h1>Saglasnost za učestvovanje u istraživanju Uticaj muzičkog obrazovanja na radnu memoriju.</h1>
 
-<center><input type="text" id="idBox"/></center>
+<center><input type="text" id="idBox" readonly/></center>
 
 <h3>Molim vas da pažljivo pročitate SAGLASNOST. Kada završite, pritisnite sivo dugme na kome piše: Nastavi dalje.</h3>
 
@@ -91,8 +76,47 @@
 </div>
 
 <button id="exp_button" onclick="getConsent()">Nastavi dalje</button>
-<script type="module" src="scripts/index.js">
+
+<script>
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+var sessionStart;
+    var sessionKey;
+
+    var thisParam1;
+
+    var uniqueID;
+  
+    if (thisParam1 = getUrlParameter('ID')) {
+      uniqueID = thisParam1;
+    } else {
+      sessionStart = pad(Date.now(),16);
+      sessionKey = Math.floor(Math.random() * 1000);
+      sessionKey = pad(sessionKey,4);
+      uniqueID = sessionStart + "_" + sessionKey;
+    }
+  
+    
+
+  var pageString = "Demographics.html?ID=";
+  var finalURL = pageString+uniqueID.toString();
+  document.getElementById("idBox").value = uniqueID;
+  function getConsent() {
+
+
+var consent = confirm("Pritiskanjem tastera, potvrđujem da se slažem sa onim što je opisano u Saglasnosti.");
+
+if (consent) {
+
+  window.location.href = finalURL;
+} 
+}
 </script>
+
 
 
 </body>

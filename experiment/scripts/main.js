@@ -27,6 +27,28 @@ let listaOdgovora =[]; // ovde se nalaze odgovori klijenta
 let listaVremenaReakcije=[];//  ovde se nalaze vremena reakcije klijenta
 let listaResenja =[];// ovde je lista resenja testova
 
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+  var sessionStart;
+      var sessionKey;
+  
+      var thisParam1;
+  
+      var ID;
+    
+      if (thisParam1 = getUrlParameter('ID')) {
+        ID = thisParam1;
+      } else {
+        sessionStart = pad(Date.now(),16);
+        sessionKey = Math.floor(Math.random() * 1000);
+        sessionKey = pad(sessionKey,4);
+        ID = sessionStart + "_" + sessionKey;
+      }
+
 function openFullscreen() 
 {
 	if (document.documentElement.requestFullscreen) 
@@ -50,15 +72,15 @@ async function startExperiment()
     let j =[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]; 
 
     await shuffle(j);
-    for ( let i =0;i<2;i++)
+    for ( let i =0;i<1;i++)
     await crtaj(6,j[i]);
 
     await shuffle(j);
-    for ( let i =0;i<2;i++)
+    for ( let i =0;i<1;i++)
     await crtaj(8,j[i]);
     
     await shuffle(j);
-    for ( let i =0;i<2;i++)
+    for ( let i =0;i<1;i++)
     await crtaj(10,j[i]);
 
     await popuniBazu();
@@ -101,22 +123,32 @@ function popuniBazu()
 
    for (let i=0;i<listaOdgovora.length;i++)
    {
-       odgovori = odgovori.concat(listaOdgovora[i],"a");
+       odgovori = odgovori.concat(listaOdgovora[i],"-x-");
    }
 
    let resenja ="";
 
    for (let i=0;i<listaResenja.length;i++)
    {
-    resenja = resenja.concat(listaResenja[i],"a");
+    resenja = resenja.concat(listaResenja[i],"-x-");
    }
 
    let vremeReakcije ="";
 
    for (let i=0;i<listaVremenaReakcije.length;i++)
    {
-    vremeReakcije = vremeReakcije.concat(listaVremenaReakcije[i],"a");
+    vremeReakcije = vremeReakcije.concat(listaVremenaReakcije[i],"-x-");
    }
 
-   //to do fetch sa serverom 
+   fetch("https://istrazivanje.azurewebsites.net/Korisnik/DodajRezultat/"+ID +'/'+resenja +'/' + odgovori+'/'+vremeReakcije,
+   {
+       method: "Put"
+   }).then(s=>
+    {
+        if (s.ok)
+        {
+            console.log("uspesno");
+        }
+    }
+   )
 }

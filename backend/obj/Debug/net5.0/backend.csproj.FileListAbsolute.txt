@@ -56,3 +56,4 @@ D:\alexistrazivanje\backend\obj\Debug\net5.0\refint\backend.dll
 D:\alexistrazivanje\backend\obj\Debug\net5.0\backend.pdb
 D:\alexistrazivanje\backend\obj\Debug\net5.0\backend.genruntimeconfig.cache
 D:\alexistrazivanje\backend\obj\Debug\net5.0\ref\backend.dll
+D:\alexistrazivanje\backend\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll

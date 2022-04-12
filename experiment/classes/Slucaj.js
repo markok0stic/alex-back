@@ -8,9 +8,9 @@ export class Slucaj{
         this.listaRandomIntervala = [];
         this.timeout=0;
         this.klasa="";
-        this.resenje="";
-        Slucaj.Odgovor="";
-        Slucaj.vremeReakcije=0;
+        this.resenje="*";
+        Slucaj.Odgovor="*";
+        Slucaj.vremeReakcije=-1;
     }
 
     getRandomInt(min, max) 
@@ -130,12 +130,14 @@ export class Slucaj{
                         {    
                             Slucaj.Odgovor="POSTOJI-RAZLIKA";
                             Slucaj.endTime = performance.now();
+                            Slucaj.vremeReakcije=0;
                             Slucaj.vremeReakcije=Math.floor( Slucaj.endTime - Slucaj.startTime);
                         }
         if (e.key == 'l' || e.key == 'L') 
                         {  
                             Slucaj.Odgovor="RAZLIKA-NE-POSTOJI";
                             Slucaj.endTime = performance.now();
+                            Slucaj.vremeReakcije=0;
                             Slucaj.vremeReakcije=Math.floor( Slucaj.endTime - Slucaj.startTime);
                         }
         let lblodg = document.querySelector(".lblOdg");

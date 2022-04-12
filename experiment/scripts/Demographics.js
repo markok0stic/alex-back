@@ -1,4 +1,27 @@
+import {Korisnik} from "../classes/Korisnik.js";
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+var sessionStart;
+    var sessionKey;
 
+    var thisParam1;
+
+    var uniqueID;
+  
+    if (thisParam1 = getUrlParameter('ID')) {
+      uniqueID = thisParam1;
+    } else {
+      sessionStart = pad(Date.now(),16);
+      sessionKey = Math.floor(Math.random() * 1000);
+      sessionKey = pad(sessionKey,4);
+      uniqueID = sessionStart + "_" + sessionKey;
+    }
+
+console.log(uniqueID);
 function Instrument()
 {
 	document.getElementById("instrument1").innerHTML="<br>Koji instrument svirate: <label> <input type='text' id='vrstainstrumenta' name='vrstainstrumenta'> </label></br>" + "</br> Koliko vremena dnevno provedete svirjuci taj instrument <label> <select id= 'vreme' name= 'vreme' size=3> <option value = 'Manje od 30 minuta'> Manje od 30 minuta </option> <option value = 'Manje od 120 minuta'> Manje od 120 minuta </option> <option value = 'Više od 30 minuta'> Više od 30 minuta </option> </select> </br>";
@@ -32,14 +55,15 @@ function submitDemographics()
           rbs.forEach(el=>{
           listaVrednsti.push(el.value);
           })
-          fetch ("https://localhost:5001/Korisnik/DodajKorisnika/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ tbInstrument.value+"/"+selVreme.options[selVreme.selectedIndex].value +"/" + listaVrednsti[2],
+          fetch ("https://istrazivanje.azurewebsites.net/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ tbInstrument.value+"/"+selVreme.options[selVreme.selectedIndex].value +"/" + listaVrednsti[2],
           {
             method:"Post"
           }).then((s)=>{
             if (s.ok)
             {
               s.json().then((data)=>{
-                window.location.href = "exp.html";
+                let k = new Korisnik(data,uniqueID);
+                window.location.href = "exp.html?ID="+data;
               }
               )
              
@@ -68,21 +92,22 @@ function submitDemographics()
             rbs.forEach(el=>{
             listaVrednsti.push(el.value);
             })
-            fetch ("https://localhost:5001/Korisnik/DodajKorisnika/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ "nan"+"/"+ "nan" +"/" + listaVrednsti[2],
+            fetch ("https:https://istrazivanje.azurewebsites.net/Korisnik/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ "nan"+"/"+ "nan" +"/" + listaVrednsti[2],
             {
               method:"Post"
             }).then((s)=>{
               if (s.ok)
               {
                 s.json().then((data)=>{
-                  window.location.href = "exp.html";
+                  let k = new Korisnik(data,uniqueID);
+                  window.location.href = "exp.html?ID="+data;
                 }
                 )
                
               }
                else
                {
-                 console.log("greska prilikom dodavanja na serveru!");
+                 console.log("greska prilikom dodavanja na serveru");
                }         
             });
           }

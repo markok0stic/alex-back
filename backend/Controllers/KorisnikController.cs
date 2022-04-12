@@ -21,10 +21,11 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        [Route("DodajKorisnika/{pol}/{starost}/{InstrumentILIPevanje}/{InstrumentKojiSvira}/{VremeProvedenoSviranjemInsturmenta}/{Obrazovanje}")]
-        public async Task<ActionResult> NapraviKorisnika(string pol,int starost,string InstrumentILIPevanje,string InstrumentKojiSvira,string VremeProvedenoSviranjemInsturmenta,string Obrazovanje)
+        [Route("KreirajKorisnika/{id}/{pol}/{starost}/{InstrumentILIPevanje}/{InstrumentKojiSvira}/{VremeProvedenoSviranjemInsturmenta}/{Obrazovanje}")]
+        public async Task<ActionResult> KreirajKorisnika(string id,string pol,int starost,string InstrumentILIPevanje,string InstrumentKojiSvira,string VremeProvedenoSviranjemInsturmenta,string Obrazovanje)
         {
             Korisnik k = new Korisnik();
+            k.IDgenerated=id;
             k.Pol=pol;
             k.Starost=starost;
             k.VremeIDatum=DateTime.Now;
@@ -62,10 +63,22 @@ namespace backend.Controllers
                 {
                     return BadRequest("Ne postoji takav korisnik");
                 }
+                List<string> resenja = resenje.Split("-x-").ToList();
+                List<string> odgovori = odg.Split("-x-").ToList();
+                List<int> vremenaReakcije = vremereakcije.Split("-x-").Where(x => int.TryParse(x, out _)).Select(int.Parse).ToList();
                 
+                for (int i=0;i<vremenaReakcije.Count;i++)
+                {
+                    var rez = new RezultatiTesta();
+                    rez.Resenje=resenja[i];
+                    rez.Odgovor=odgovori[i];
+                    rez.VremeReakcije=vremenaReakcije[i];
+                    k.RezultatiTesta.Add(rez);
+                }
+
                 Context.Korisnici.Update(k);
                 await Context.SaveChangesAsync();
-                return Ok(k.RezultatiTesta);
+                return Ok(k.ID);
            }
            catch(Exception e)
            {
@@ -76,7 +89,7 @@ namespace backend.Controllers
         [Route("VratiKorisnike")]
         public async Task<ActionResult> VratiKorisnike()
         {
-            var korisnici = await Context.Korisnici.ToListAsync();
+            var korisnici = await Context.Korisnici.Include(k=>k.RezultatiTesta).ToListAsync();
             return Ok(korisnici);
         }
 
@@ -86,7 +99,8 @@ namespace backend.Controllers
         public async Task<ActionResult> VratiRezultateZaKorisnika(int id)
         {
            try{
-                var k = await Context.Korisnici.Include(k=>k.RezultatiTesta).Where(k=>k.ID ==id).FirstOrDefaultAsync();
+                var korisnik = Context.Korisnici.Include(k => k.RezultatiTesta).Where(k => k.ID == id);
+                var k = await korisnik.FirstOrDefaultAsync();
                 if (k==null)
                 {
                     return BadRequest("Ne postoji takav korisnik");

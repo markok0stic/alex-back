@@ -10,7 +10,7 @@ namespace Models
     {
         [Key]
         public int ID { get; set; }
-
+        public string IDgenerated { get; set; }
         public DateTime VremeIDatum { get; set; }
 
         public string Pol {get;set;}

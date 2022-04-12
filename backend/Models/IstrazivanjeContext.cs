@@ -7,6 +7,8 @@ namespace Models
     {
        public DbSet<Korisnik> Korisnici {get;set;}
 
+        public DbSet<RezultatiTesta> RezultatiTesta { get; set; }
+
         public IstrazivanjeContext(DbContextOptions options):base(options)
         {
             

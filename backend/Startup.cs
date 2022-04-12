@@ -36,14 +36,7 @@ namespace backend
             {
                 options.AddPolicy("CORS", builder =>
                 {
-                    builder.WithOrigins(new string[]
-                    {
-                        "http://localhost:8080",
-                        "https://localhost:8080",
-                        "http://127.0.0.1:8080",
-                        "https://127.0.0.1:8080",
-                        "http://127.0.0.1:5500"
-                    }).AllowAnyHeader().AllowAnyMethod();
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
 
@@ -57,7 +50,8 @@ namespace backend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            
+            //if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
