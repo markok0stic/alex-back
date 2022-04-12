@@ -92,7 +92,7 @@ function submitDemographics()
             rbs.forEach(el=>{
             listaVrednsti.push(el.value);
             })
-            fetch ("http:https://istrazivanje.azurewebsites.net/Korisnik/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ "nan"+"/"+ "nan" +"/" + listaVrednsti[2],
+            fetch ("http://istrazivanje.azurewebsites.net/Korisnik/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ "nan"+"/"+ "nan" +"/" + listaVrednsti[2],
             {
               method:"Post"
             }).then((s)=>{
