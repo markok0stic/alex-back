@@ -55,7 +55,7 @@ function submitDemographics()
           rbs.forEach(el=>{
           listaVrednsti.push(el.value);
           })
-          fetch ("https://istrazivanje.azurewebsites.net/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ tbInstrument.value+"/"+selVreme.options[selVreme.selectedIndex].value +"/" + listaVrednsti[2],
+          fetch ("http://istrazivanje.azurewebsites.net/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ tbInstrument.value+"/"+selVreme.options[selVreme.selectedIndex].value +"/" + listaVrednsti[2],
           {
             method:"Post"
           }).then((s)=>{
@@ -92,7 +92,7 @@ function submitDemographics()
             rbs.forEach(el=>{
             listaVrednsti.push(el.value);
             })
-            fetch ("https:https://istrazivanje.azurewebsites.net/Korisnik/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ "nan"+"/"+ "nan" +"/" + listaVrednsti[2],
+            fetch ("http:https://istrazivanje.azurewebsites.net/Korisnik/KreirajKorisnika/"+uniqueID+"/"+ listaVrednsti[0]+"/"+tbGod.value+"/"+ listaVrednsti[1]+"/"+ "nan"+"/"+ "nan" +"/" + listaVrednsti[2],
             {
               method:"Post"
             }).then((s)=>{
