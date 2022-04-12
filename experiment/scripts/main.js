@@ -142,7 +142,8 @@ function popuniBazu()
 
    fetch("http://istrazivanje.azurewebsites.net/Korisnik/DodajRezultat/"+ID +'/'+resenja +'/' + odgovori+'/'+vremeReakcije,
    {
-       method: "Put"
+    method:"PUT",
+    headers: {'Content-Type': 'application/json'},
    }).then(s=>
     {
         if (s.ok)
