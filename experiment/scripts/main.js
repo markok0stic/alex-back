@@ -140,7 +140,7 @@ function popuniBazu()
     vremeReakcije = vremeReakcije.concat(listaVremenaReakcije[i],"-x-");
    }
 
-   fetch("http://istrazivanje.azurewebsites.net/Korisnik/DodajRezultat/"+ID +'/'+resenja +'/' + odgovori+'/'+vremeReakcije,
+   fetch("https://istrazivanje.azurewebsites.net/Korisnik/DodajRezultat/"+ID +'/'+resenja +'/' + odgovori+'/'+vremeReakcije,
    {
     method:"PUT",
     headers: {'Content-Type': 'application/json'},
