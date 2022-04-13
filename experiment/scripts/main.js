@@ -58,7 +58,7 @@ function openFullscreen()
 	else if (document.documentElement.msRequestFullscreen) 
 		document.documentElement.msRequestFullscreen();
 }   
-
+let brojIteracija = 3;
 
 async function startExperiment()
 {
@@ -72,15 +72,15 @@ async function startExperiment()
     let j =[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]; 
 
     await shuffle(j);
-    for ( let i =0;i<1;i++)
+    for ( let i =0;i<brojIteracija;i++)
     await crtaj(6,j[i]);
 
     await shuffle(j);
-    for ( let i =0;i<1;i++)
+    for ( let i =0;i<brojIteracija;i++)
     await crtaj(8,j[i]);
     
     await shuffle(j);
-    for ( let i =0;i<1;i++)
+    for ( let i =0;i<brojIteracija;i++)
     await crtaj(10,j[i]);
 
     await popuniBazu();

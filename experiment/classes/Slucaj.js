@@ -132,15 +132,22 @@ export class Slucaj{
                             Slucaj.endTime = performance.now();
                             Slucaj.vremeReakcije=0;
                             Slucaj.vremeReakcije=Math.floor( Slucaj.endTime - Slucaj.startTime);
+                            let lblodg = document.querySelector(".lblOdg");
+                            lblodg.innerHTML="OVO JE TRAJALO: <b>"+Slucaj.vremeReakcije  + "ms</b>"; 
                         }
+        else
         if (e.key == 'l' || e.key == 'L') 
                         {  
                             Slucaj.Odgovor="RAZLIKA-NE-POSTOJI";
                             Slucaj.endTime = performance.now();
                             Slucaj.vremeReakcije=0;
                             Slucaj.vremeReakcije=Math.floor( Slucaj.endTime - Slucaj.startTime);
+                            let lblodg = document.querySelector(".lblOdg");
+                            lblodg.innerHTML="OVO JE TRAJALO: <b>"+Slucaj.vremeReakcije  + "ms</b>"; 
                         }
-        let lblodg = document.querySelector(".lblOdg");
-        lblodg.innerHTML="OVO JE TRAJALO: <b>"+Slucaj.vremeReakcije  + "ms</b>";  
+        else
+        {
+            document.addEventListener("keyup", Slucaj.onkeyPressed);
+        }
     }		 
 }
