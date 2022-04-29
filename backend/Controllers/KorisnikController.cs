@@ -112,5 +112,25 @@ namespace backend.Controllers
                return BadRequest(e.Message);
            }
         }
+
+        [HttpGet]
+        [Route("VratiRezultatePoID/{id}")]
+        public async Task<ActionResult> VratiRezultatePoID(string id)
+        {
+            try
+            {
+                var korisnik = Context.Korisnici.Include(k => k.RezultatiTesta).Where(k => k.IDgenerated == id);
+                var k = await korisnik.FirstOrDefaultAsync();
+                if (k == null)
+                {
+                    return BadRequest("Ne postoji takav korisnik");
+                }
+                return Ok(k.RezultatiTesta);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
