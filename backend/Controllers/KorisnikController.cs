@@ -28,7 +28,7 @@ namespace backend.Controllers
             k.IDgenerated=id;
             k.Pol=pol;
             k.Starost=starost;
-            k.VremeIDatum=DateTime.UtcNow;
+            k.VremeIDatum=DateTime.UtcNow.AddHours(2.0);
             k.Obrazovanje=Obrazovanje;
             k.InstrumentILIPevanje=InstrumentILIPevanje;
             k.RezultatiTesta = new List<RezultatiTesta>();
