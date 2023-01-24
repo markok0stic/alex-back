@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/dbistrazivanje/databases/dbFree",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:IstrazivanjeCS"
+    }
+  }
+}
