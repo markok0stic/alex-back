@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using MusiciansAbilities.Models;
+using MusiciansAbilities.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
 builder.Services
-    .AddDbContext<DbResultsContext>(options =>
-        options.UseSqlServer(builder.Configuration["ConnectionStrings:DbConnectionString"]))
     .AddHttpContextAccessor()
+    .AddDbContext<DbResultsContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration["ConnectionStrings:DbConnectionString"]);
+    })
     .AddCors(options=>
     {
         options.AddPolicy("CORS", builder =>
@@ -13,19 +18,21 @@ builder.Services
             builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
         });
     });
-
-builder.Services.AddControllers();
+builder.Services
+    .AddScoped<IDbService, DbService>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-app.UseHttpsRedirection(); 
-app.UseRouting();
-app.UseCors("CORS");
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+app.UseHttpsRedirection()
+    .UseRouting()
+    .UseCors("CORS")
+    .UseEndpoints(endpoints => 
+    { 
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Users}/{action=Index}");
+    });
 app.Run();

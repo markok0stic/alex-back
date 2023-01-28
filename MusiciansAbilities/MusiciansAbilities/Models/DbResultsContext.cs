@@ -3,11 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MusiciansAbilities.Models;
 
-internal sealed class DbResultsContext : DbContext
+public sealed class DbResultsContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<ExperimentResult> ExperimentResults { get; set; }
 
+    public DbResultsContext()
+    {
+        
+    }
     public DbResultsContext(DbContextOptions options) : base(options)
     {
         
