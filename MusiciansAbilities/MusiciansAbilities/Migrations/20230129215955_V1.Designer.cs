@@ -12,7 +12,7 @@ using MusiciansAbilities.Models;
 namespace MusiciansAbilities.Migrations
 {
     [DbContext(typeof(DbResultsContext))]
-    [Migration("20230128180024_V1")]
+    [Migration("20230129215955_V1")]
     partial class V1
     {
         /// <inheritdoc />
@@ -79,16 +79,18 @@ namespace MusiciansAbilities.Migrations
 
                     b.Property<string>("SecretId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TimeSpentPracticing")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SecretId")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

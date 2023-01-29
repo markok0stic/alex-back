@@ -7,10 +7,11 @@ namespace MusiciansAbilities.Controllers;
 public class UsersController: Controller
 {
     private readonly IDbService _dbService;
-    
-    public UsersController(IDbService dbService)
+    private readonly ILogger<UsersController> _logger;
+    public UsersController(IDbService dbService, ILogger<UsersController> logger)
     {
         _dbService = dbService;
+        _logger = logger;
     }
     
     [HttpPost]
@@ -24,7 +25,8 @@ public class UsersController: Controller
         }
         catch(Exception e)
         {
-            return UnprocessableEntity(e.Message);
+            _logger.LogError(e,"");
+            return UnprocessableEntity(e.Message+e.StackTrace);
         }
     }
 
@@ -39,7 +41,8 @@ public class UsersController: Controller
         }
         catch(Exception e)
         {
-            return UnprocessableEntity(e.Message);
+            _logger.LogError(e,"");
+            return UnprocessableEntity(e.Message+e.StackTrace);
         }
     }
 
@@ -52,7 +55,8 @@ public class UsersController: Controller
         }
         catch(Exception e)
         {
-            return UnprocessableEntity(e.Message);
+            _logger.LogError(e,"");
+            return UnprocessableEntity(e.Message+e.StackTrace);
         }
     }
     
@@ -65,7 +69,8 @@ public class UsersController: Controller
         }
         catch(Exception e)
         {
-            return UnprocessableEntity(e.Message);
+            _logger.LogError(e,"");
+            return UnprocessableEntity(e.Message+e.StackTrace);
         }
     }
 }

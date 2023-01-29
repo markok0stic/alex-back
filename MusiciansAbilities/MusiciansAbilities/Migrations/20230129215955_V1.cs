@@ -17,12 +17,12 @@ namespace MusiciansAbilities.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SecretId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SecretId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Instrument = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TimeSpentPracticing = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TimeSpentPracticing = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -55,6 +55,12 @@ namespace MusiciansAbilities.Migrations
                 name: "IX_ExperimentResults_UserId",
                 table: "ExperimentResults",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_SecretId",
+                table: "Users",
+                column: "SecretId",
+                unique: true);
         }
 
         /// <inheritdoc />

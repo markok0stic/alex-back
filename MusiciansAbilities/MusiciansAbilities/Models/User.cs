@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace MusiciansAbilities.Models;
 [Table("Users")]
@@ -11,7 +12,7 @@ public class User
     public string Gender { get; set; }
     public int Age { get; set; }
     public string Instrument { get; set; }
-    public string TimeSpentPracticing { get; set; }
+    public string? TimeSpentPracticing { get; set; }
     public string Education { get; set; }
-    public List<ExperimentResult> ExperimentResults { get; set; }
+    public List<ExperimentResult>? ExperimentResults { get; set; }
 }

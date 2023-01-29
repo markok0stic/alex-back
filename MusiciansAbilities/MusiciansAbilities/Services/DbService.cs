@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MusiciansAbilities.Helpers;
 using MusiciansAbilities.Models;
 
 namespace MusiciansAbilities.Services;
@@ -23,6 +24,7 @@ public class DbService: IDbService
 
     public async Task<bool> InsertUser(User user)
     {
+        user.Timestamp = DateTimeHelper.GetDateTimeNow();
         _dbResultsContext.Users.Add(user);
         await _dbResultsContext.SaveChangesAsync();
         return true;
@@ -30,6 +32,7 @@ public class DbService: IDbService
 
     public async Task<bool> UpdateUser(User user)
     {
+        user.Timestamp = DateTimeHelper.GetDateTimeNow();
         _dbResultsContext.Users.Update(user);
         await _dbResultsContext.SaveChangesAsync();
         return true;
@@ -41,6 +44,7 @@ public class DbService: IDbService
         var user = await _dbResultsContext.Users.FirstOrDefaultAsync(u => u.SecretId == userId);
         if (user != null)
         {
+            user.Timestamp = DateTimeHelper.GetDateTimeNow();
             user.ExperimentResults = result;
             _dbResultsContext.Users.Update(user);
             await _dbResultsContext.SaveChangesAsync();
