@@ -76,16 +76,18 @@ namespace MusiciansAbilities.Migrations
 
                     b.Property<string>("SecretId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TimeSpentPracticing")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SecretId")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

@@ -1,9 +1,10 @@
+using AlertLogger;
 using Microsoft.EntityFrameworkCore;
 using MusiciansAbilities.Models;
 using MusiciansAbilities.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.UseAlertLogger();
 builder.Services.AddControllers();
 builder.Services
     .AddHttpContextAccessor()
@@ -26,11 +27,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-app.UseHttpsRedirection()
+
+app
+    .UseHttpsRedirection()
     .UseRouting()
     .UseCors("CORS")
-    .UseEndpoints(endpoints => 
-    { 
+    .UseStaticFiles()
+    .UseEndpoints(endpoints =>
+    {
         endpoints.MapControllerRoute(
             name: "default",
             pattern: "{controller=Users}/{action=Index}");

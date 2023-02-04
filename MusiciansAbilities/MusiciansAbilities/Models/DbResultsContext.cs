@@ -12,8 +12,14 @@ public sealed class DbResultsContext : DbContext
     {
         
     }
+    
     public DbResultsContext(DbContextOptions options) : base(options)
     {
         
+    }
+    
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<User>().HasIndex(u => u.SecretId).IsUnique();
     }
 }
